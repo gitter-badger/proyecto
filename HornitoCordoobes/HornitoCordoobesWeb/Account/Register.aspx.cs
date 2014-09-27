@@ -13,6 +13,7 @@ namespace HornitoCordoobesWeb.Account
         protected void Page_Load(object sender, EventArgs e)
         {
             this.LoadTipoDocumento();
+            this.LoadBarrios();
         }
 
         private void LoadTipoDocumento()
@@ -21,6 +22,14 @@ namespace HornitoCordoobesWeb.Account
             tipoDocumento.DataValueField = "Id";
             tipoDocumento.DataTextField = "Descripcion";
             tipoDocumento.DataBind();
+        }
+
+        private void LoadBarrios()
+        {
+            barrio.DataSource = GestorBarrio.getAll();
+            barrio.DataValueField = "Id";
+            barrio.DataTextField = "Descripcion";
+            barrio.DataBind();
         }
     }
 }
