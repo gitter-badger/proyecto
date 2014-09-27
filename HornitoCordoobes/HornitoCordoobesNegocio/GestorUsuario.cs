@@ -7,23 +7,16 @@ using HornitoCordoobesEntidades;
 
 namespace HornitoCordoobesNegocio
 {
-    public class GestorCliente : IGestor<Cliente>
+    public class GestorUsuario : IGestor<Usuario>
     {
-        public List<Cliente> getAll()
+        public List<Usuario> getAll()
         {
             return null;
         }
 
-        public bool save(Cliente cliente)
+        public bool exist(string username)
         {
-            //TODO implementar magia
-            return true;
-        }
-
-        public bool exist(int nroDoc, int idTipoDoc)
-        {
-            //TODO implementar magia
-            if (nroDoc == 123 && idTipoDoc == 1)
+            if (username == "test")
             {
                 return true;
             }

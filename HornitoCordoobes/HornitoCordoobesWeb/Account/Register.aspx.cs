@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using HornitoCordoobesNegocio;
+using HornitoCordoobesEntidades;
 
 namespace HornitoCordoobesWeb.Account
 {
@@ -16,7 +17,11 @@ namespace HornitoCordoobesWeb.Account
             this.LoadBarrios();
             if (Page.IsPostBack)
             {
-                Label1.Text = "POSTBACE";
+                Page.Validate();
+                if (Page.IsValid)
+                {
+                    Response.Redirect("~/Admin/Users.aspx");
+                }
             }
         }
 
@@ -34,6 +39,16 @@ namespace HornitoCordoobesWeb.Account
             barrio.DataValueField = "Id";
             barrio.DataTextField = "Descripcion";
             barrio.DataBind();
+        }
+
+        protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            args.IsValid = !new GestorCliente().exist(Convert.ToInt32(nroDocumento.Text),Convert.ToInt32(tipoDocumento.SelectedValue));
+        }
+
+        protected void CustomValidator2_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            args.IsValid = !new GestorUsuario().exist(usuario.Text);
         }
     }
 }

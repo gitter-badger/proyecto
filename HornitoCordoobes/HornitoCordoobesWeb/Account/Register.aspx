@@ -11,11 +11,11 @@
         }
         .auto-style4 {
             height: 23px;
-            width: 331px;
+            width: 345px;
         }
         .auto-style5 {
-        width: 331px;
-    }
+            width: 345px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -29,7 +29,7 @@
                     <asp:TextBox ID="nombre" runat="server" Width="300px"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="nombre" CssClass="errorStar" ErrorMessage="El nombre es requerido">*</asp:RequiredFieldValidator>
                 </td>
-                <td class="auto-style1" rowspan="12">
+                <td class="auto-style1" rowspan="13">
                     <asp:ValidationSummary ID="ValidationSummary2" runat="server" CssClass="errorStar" />
                 </td>
             </tr>
@@ -38,6 +38,15 @@
                 <td class="auto-style4">
                     <asp:TextBox ID="apellido" runat="server" Width="300px"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="apellido" CssClass="errorStar" ErrorMessage="El apellido es requerido">*</asp:RequiredFieldValidator>
+                </td>
+            </tr>
+            <tr>
+                <td class="auto-style2">Sexo</td>
+                <td class="auto-style4">
+                    <asp:RadioButtonList ID="RadioButtonList1" runat="server">
+                        <asp:ListItem Selected="True" Value="F">Femenino</asp:ListItem>
+                        <asp:ListItem Value="M">Masculino</asp:ListItem>
+                    </asp:RadioButtonList>
                 </td>
             </tr>
             <tr>
@@ -53,6 +62,7 @@
                     <asp:TextBox ID="nroDocumento" runat="server" Width="300px"></asp:TextBox>
                     <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToValidate="nroDocumento" ErrorMessage="El numero de documento no es valido" Operator="DataTypeCheck" Type="Double" CssClass="errorStar">*</asp:CompareValidator>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="nroDocumento" ErrorMessage="El numero de documento es requerido" CssClass="errorStar">*</asp:RequiredFieldValidator>
+                    <asp:CustomValidator ID="CustomValidator1" runat="server" ControlToValidate="nroDocumento" CssClass="errorStar" ErrorMessage="Ya existe un usuario con el numero y tipo de documento" OnServerValidate="CustomValidator1_ServerValidate">*</asp:CustomValidator>
                 </td>
             </tr>
             <tr>
@@ -88,6 +98,7 @@
                 <td class="auto-style5">
                     <asp:TextBox ID="usuario" runat="server" Width="300px"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="usuario" CssClass="errorStar" ErrorMessage="El usuario es requerido">*</asp:RequiredFieldValidator>
+                    <asp:CustomValidator ID="CustomValidator2" runat="server" ControlToValidate="usuario" CssClass="errorStar" ErrorMessage="El usuario ya existe" OnServerValidate="CustomValidator2_ServerValidate">*</asp:CustomValidator>
                 </td>
             </tr>
             <tr>
