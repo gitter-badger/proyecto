@@ -7,9 +7,9 @@ using HornitoCordoobesEntidades;
 
 namespace HornitoCordoobesNegocio
 {
-    public class GestorTipoDocumento
+    public class GestorTipoDocumento : IGestor<TipoDocumento>
     {
-        public static List<TipoDocumento> getAll()
+        public List<TipoDocumento> getAll()
         {
             //TODO Traer datos desde la base de datos
             List<TipoDocumento> lista = new List<TipoDocumento>();

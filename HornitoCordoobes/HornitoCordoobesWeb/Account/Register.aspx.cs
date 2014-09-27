@@ -18,7 +18,7 @@ namespace HornitoCordoobesWeb.Account
 
         private void LoadTipoDocumento()
         {
-            tipoDocumento.DataSource = GestorTipoDocumento.getAll();
+            tipoDocumento.DataSource = new GestorTipoDocumento().getAll();
             tipoDocumento.DataValueField = "Id";
             tipoDocumento.DataTextField = "Descripcion";
             tipoDocumento.DataBind();
@@ -26,7 +26,7 @@ namespace HornitoCordoobesWeb.Account
 
         private void LoadBarrios()
         {
-            barrio.DataSource = GestorBarrio.getAll();
+            barrio.DataSource = new GestorBarrio().getAll();
             barrio.DataValueField = "Id";
             barrio.DataTextField = "Descripcion";
             barrio.DataBind();
