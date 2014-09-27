@@ -3,7 +3,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <p>
-        Soy el login pa&#39;<asp:Login ID="Login1" runat="server">
-        </asp:Login>
-    </p>
+    Soy el login pa&#39;<asp:Login ID="Login1" runat="server">
+    </asp:Login>
+</p>
 </asp:Content>
