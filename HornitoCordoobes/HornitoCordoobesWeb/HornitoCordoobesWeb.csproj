@@ -60,6 +60,7 @@
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="Admin\Product.aspx" />
+    <Content Include="Admin\Users.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Styles\Style.css" />
     <Content Include="Web.config" />
@@ -82,9 +83,17 @@
     </Compile>
     <Compile Include="Admin\Product.aspx.cs">
       <DependentUpon>Product.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\Product.aspx.designer.cs">
       <DependentUpon>Product.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Users.aspx.cs">
+      <DependentUpon>Users.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Users.aspx.designer.cs">
+      <DependentUpon>Users.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -113,6 +122,16 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HornitoCordoobesEntidades\HornitoCordoobesEntidades.csproj">
+      <Project>{84dea7ab-6945-4a9f-88d7-b75a289b6b3e}</Project>
+      <Name>HornitoCordoobesEntidades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HornitoCordoobesNegocio\HornitoCordoobesNegocio.csproj">
+      <Project>{5b39c291-1a5f-43e5-8f34-7e738e8aab48}</Project>
+      <Name>HornitoCordoobesNegocio</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
