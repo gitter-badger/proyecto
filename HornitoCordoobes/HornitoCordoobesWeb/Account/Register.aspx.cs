@@ -14,6 +14,10 @@ namespace HornitoCordoobesWeb.Account
         {
             this.LoadTipoDocumento();
             this.LoadBarrios();
+            if (Page.IsPostBack)
+            {
+                Label1.Text = "POSTBACE";
+            }
         }
 
         private void LoadTipoDocumento()

@@ -20,17 +20,31 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <p>
-        Registrar Usuario</p>
+        Registrar Cliente</p>
     <p>
         <table style="width: 93%;">
+            <tr>
+                <td class="auto-style2">Nombre</td>
+                <td class="auto-style4">
+                    <asp:TextBox ID="nombre" runat="server" Width="300px"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="nombre" CssClass="errorStar" ErrorMessage="El nombre es requerido">*</asp:RequiredFieldValidator>
+                </td>
+                <td class="auto-style1" rowspan="12">
+                    <asp:ValidationSummary ID="ValidationSummary2" runat="server" CssClass="errorStar" />
+                </td>
+            </tr>
+            <tr>
+                <td class="auto-style2">Apellido</td>
+                <td class="auto-style4">
+                    <asp:TextBox ID="apellido" runat="server" Width="300px"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="apellido" CssClass="errorStar" ErrorMessage="El apellido es requerido">*</asp:RequiredFieldValidator>
+                </td>
+            </tr>
             <tr>
                 <td class="auto-style2">Tipo Documento</td>
                 <td class="auto-style4">
                     <asp:DropDownList ID="tipoDocumento" runat="server" Width="300px">
                     </asp:DropDownList>
-                </td>
-                <td class="auto-style1" rowspan="7">
-                    <asp:ValidationSummary ID="ValidationSummary2" runat="server" CssClass="errorStar" />
                 </td>
             </tr>
             <tr>
@@ -52,7 +66,7 @@
             <tr>
                 <td class="auto-style3">Dirección</td>
                 <td class="auto-style5">
-                    <asp:TextBox ID="direccion" runat="server" Width="300px"></asp:TextBox>
+                    <asp:TextBox ID="direccion" runat="server" Width="300px" MaxLength="500" TextMode="MultiLine"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="direccion" ErrorMessage="Direccion no valida" CssClass="errorStar">*</asp:RequiredFieldValidator>
                 </td>
             </tr>
@@ -70,12 +84,34 @@
                 </td>
             </tr>
             <tr>
+                <td class="auto-style3">Usuario</td>
+                <td class="auto-style5">
+                    <asp:TextBox ID="usuario" runat="server" Width="300px"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="usuario" CssClass="errorStar" ErrorMessage="El usuario es requerido">*</asp:RequiredFieldValidator>
+                </td>
+            </tr>
+            <tr>
+                <td class="auto-style3">Password</td>
+                <td class="auto-style5">
+                    <asp:TextBox ID="password" runat="server" TextMode="Password" Width="300px"></asp:TextBox>
+                    <asp:CompareValidator ID="CompareValidator2" runat="server" ControlToCompare="repassword" ControlToValidate="password" CssClass="errorStar" ErrorMessage="Los passwords no coinciden">*</asp:CompareValidator>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="password" CssClass="errorStar" ErrorMessage="El password es requerido">*</asp:RequiredFieldValidator>
+                </td>
+            </tr>
+            <tr>
+                <td class="auto-style3">Repetir Password</td>
+                <td class="auto-style5">
+                    <asp:TextBox ID="repassword" runat="server" TextMode="Password" Width="300px"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
                 <td class="auto-style3">&nbsp;</td>
                 <td class="auto-style5">
                     <asp:Button ID="Button1" runat="server" Text="Aceptar" />
                 </td>
             </tr>
         </table>
+        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
     </p>
     <div>
 </asp:Content>

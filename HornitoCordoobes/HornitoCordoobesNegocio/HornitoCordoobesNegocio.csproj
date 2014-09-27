@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GestorBarrio.cs" />
+    <Compile Include="GestorCliente.cs" />
     <Compile Include="GestorTipoDocumento.cs" />
     <Compile Include="IGestor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
