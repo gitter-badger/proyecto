@@ -14,7 +14,6 @@ namespace HornitoCordoobesNegocio
         private static SqlConnection connection = ConnectionFactory.getConnection();
         public List<TipoDocumento> getAll()
         {
-            //TODO Traer datos desde la base de datos
             List<TipoDocumento> lista = new List<TipoDocumento>();
             connection.Open();
             SqlCommand select = new SqlCommand("SELECT * FROM TiposDeDocumento", connection);
