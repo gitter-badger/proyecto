@@ -15,7 +15,32 @@ namespace HornitoCordoobesNegocio
 
         public List<Cliente> getAll()
         {
-            return null;
+            List<Cliente> lista = new List<Cliente>();
+            connection.Open();
+            SqlCommand select = new SqlCommand("SELECT * FROM Clientes c LEFT JOIN Usuarios u On c.idUsuario = u.idUsuario WHERE rol LIKE 'Cliente'", connection);
+            SqlDataReader reader = select.ExecuteReader();
+            while (reader.Read())
+            {
+                Cliente c = new Cliente();
+                c.Id = (int)reader["idUsuario"];
+                c.IdBarrio = (int)reader["idBarrio"];
+                c.IdTipoDocumento= (int)reader["idTiposDeDocumento"];
+                c.Nombre = reader["nombre"].ToString();
+                c.NombreUsuario = reader["nombreUsuario"].ToString();
+                c.NumeroDocumento = (int)reader["nroDoc"];
+                c.Password = reader["password"].ToString();
+                c.Rol = reader["rol"].ToString();
+                c.Sexo = reader["sexo"].ToString();
+                c.Apellido = reader["apellido"].ToString();
+                c.Direccion = reader["direccion"].ToString();
+                c.Email = reader["email"].ToString();
+                c.Estado = (bool)reader["estado"];
+                c.FechaAlta = (DateTime)reader["fechaAlta"];
+
+                lista.Add(c);
+            }
+            connection.Close();
+            return lista;
         }
 
         public int save(Cliente cliente)

@@ -1,7 +1,8 @@
 ﻿body {
-
-
+    
 }
+* {
+    font-family: Arial;
 }
 
 .errorStar {
