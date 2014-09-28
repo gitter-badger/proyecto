@@ -4,28 +4,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HornitoCordoobesEntidades;
+using System.Data.SqlClient;
+using HornitoCordoobesNegocio.Utils;
 
 namespace HornitoCordoobesNegocio
 {
     public class GestorTipoDocumento : IGestor<TipoDocumento>
     {
+        private static SqlConnection connection = ConnectionFactory.getConnection();
         public List<TipoDocumento> getAll()
         {
             //TODO Traer datos desde la base de datos
             List<TipoDocumento> lista = new List<TipoDocumento>();
-            TipoDocumento td1 = new TipoDocumento();
-            td1.Descripcion = "DNI";
-            td1.Id = 1;
-            lista.Add(td1);
-            TipoDocumento td2 = new TipoDocumento();
-            td2.Descripcion = "LC";
-            td2.Id = 2;
-            lista.Add(td2);
-            TipoDocumento td3 = new TipoDocumento();
-            td3.Descripcion = "LCA";
-            td3.Id = 3;
-            lista.Add(td3);
-
+            connection.Open();
+            SqlCommand select = new SqlCommand("SELECT * FROM TiposDeDocumento", connection);
+            SqlDataReader reader = select.ExecuteReader();
+            while (reader.Read())
+            {
+                TipoDocumento td = new TipoDocumento();
+                td.Id = (int)reader["idTiposDeDocumento"];
+                td.Descripcion = (string)reader["descripcion"];
+                lista.Add(td);
+            }
+            connection.Close();
             return lista;
         }
     }

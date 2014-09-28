@@ -17,9 +17,8 @@ namespace HornitoCordoobesNegocio.Utils
         {
             if (connection == null)
             {
-                connection = new SqlConnection("Data Source=(localdb)\Projects;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False");
+                connection = new SqlConnection("Data Source=PC-PC;Initial Catalog=HornitoCoordobes;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False");
             }
-            connection.Open();
             return connection;
         }
     }
