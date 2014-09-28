@@ -16,5 +16,7 @@ namespace HornitoCordoobesEntidades
         public DateTime FechaAlta { get; set; }
         public int IdBarrio { get; set; }
         public bool Estado { get; set; }
+        public string Email { get; set; }
+        public string Sexo { get; set; }
     }
 }

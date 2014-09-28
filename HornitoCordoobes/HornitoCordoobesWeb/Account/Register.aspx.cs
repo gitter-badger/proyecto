@@ -18,9 +18,28 @@ namespace HornitoCordoobesWeb.Account
             if (Page.IsPostBack)
             {
                 Page.Validate();
+
+                
+
                 if (Page.IsValid)
                 {
-                    Response.Redirect("~/Admin/Users.aspx");
+                    Cliente cliente = new Cliente();
+                    cliente.Apellido = apellido.Text;
+                    cliente.Direccion = direccion.Text;
+                    cliente.IdBarrio = Convert.ToInt32(barrio.SelectedValue.ToString());
+                    cliente.IdTipoDocumento = Convert.ToInt32(tipoDocumento.SelectedValue.ToString());
+                    cliente.Nombre = nombre.Text;
+                    cliente.NombreUsuario = usuario.Text;
+                    cliente.Rol = "Cliente";
+                    cliente.Password = password.Text.GetHashCode().ToString();
+                    cliente.Email = email.Text;
+                    cliente.NumeroDocumento = Convert.ToInt32(nroDocumento.Text);
+                    cliente.Sexo = sexo.SelectedValue.ToString();
+                    if (new GestorCliente().save(cliente) > 0)
+                    {
+                        Response.Redirect("~/Admin/Users.aspx");
+                    }
+                    
                 }
             }
         }

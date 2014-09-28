@@ -43,7 +43,7 @@
             <tr>
                 <td class="auto-style2">Sexo</td>
                 <td class="auto-style4">
-                    <asp:RadioButtonList ID="RadioButtonList1" runat="server">
+                    <asp:RadioButtonList ID="sexo" runat="server">
                         <asp:ListItem Selected="True" Value="F">Femenino</asp:ListItem>
                         <asp:ListItem Value="M">Masculino</asp:ListItem>
                     </asp:RadioButtonList>
