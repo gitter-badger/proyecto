@@ -21,23 +21,7 @@ namespace HornitoCordoobesNegocio
             SqlDataReader reader = select.ExecuteReader();
             while (reader.Read())
             {
-                Cliente c = new Cliente();
-                c.Id = (int)reader["idUsuario"];
-                c.IdBarrio = (int)reader["idBarrio"];
-                c.IdTipoDocumento= (int)reader["idTiposDeDocumento"];
-                c.Nombre = reader["nombre"].ToString();
-                c.NombreUsuario = reader["nombreUsuario"].ToString();
-                c.NumeroDocumento = (int)reader["nroDoc"];
-                c.Password = reader["password"].ToString();
-                c.Rol = reader["rol"].ToString();
-                c.Sexo = reader["sexo"].ToString();
-                c.Apellido = reader["apellido"].ToString();
-                c.Direccion = reader["direccion"].ToString();
-                c.Email = reader["email"].ToString();
-                c.Estado = (bool)reader["estado"];
-                c.FechaAlta = (DateTime)reader["fechaAlta"];
-
-                lista.Add(c);
+                lista.Add(this.materialize(reader));
             }
             connection.Close();
             return lista;
@@ -87,6 +71,42 @@ namespace HornitoCordoobesNegocio
             bool value =  (int)select.ExecuteScalar() > 0 ? true : false;
             connection.Close();
             return value;
+        }
+
+        public Cliente getById(int id)
+        {
+            connection.Open();
+            SqlCommand select = new SqlCommand("SELECT * FROM Clientes c LEFT JOIN Usuarios u On c.idUsuario = u.idUsuario WHERE rol LIKE 'Cliente' AND c.idUsuario=@id", connection);
+            select.Parameters.Add(new SqlParameter("@id",id));
+            SqlDataReader reader = select.ExecuteReader();
+            reader.Read();
+            Cliente c = this.materialize(reader);
+            connection.Close();
+            return c;
+        }
+
+        private Cliente materialize(SqlDataReader row)
+        {
+            if (!row.HasRows)
+            {
+                return null;
+            }
+            Cliente c = new Cliente();
+            c.Id = (int)row["idUsuario"];
+            c.IdBarrio = (int)row["idBarrio"];
+            c.IdTipoDocumento = (int)row["idTiposDeDocumento"];
+            c.Nombre = row["nombre"].ToString();
+            c.NombreUsuario = row["nombreUsuario"].ToString();
+            c.NumeroDocumento = (int)row["nroDoc"];
+            c.Password = row["password"].ToString();
+            c.Rol = row["rol"].ToString();
+            c.Sexo = row["sexo"].ToString();
+            c.Apellido = row["apellido"].ToString();
+            c.Direccion = row["direccion"].ToString();
+            c.Email = row["email"].ToString();
+            c.Estado = (bool)row["estado"];
+            c.FechaAlta = (DateTime)row["fechaAlta"];
+            return c;
         }
     }
 }

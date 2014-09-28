@@ -17,6 +17,10 @@ namespace HornitoCordoobesWeb.Account
             {
                 this.LoadTipoDocumento();
                 this.LoadBarrios();
+                if (Request.QueryString["userId"] != null)
+                {
+                    this.FillForm(Convert.ToInt32(Request.QueryString["userId"].ToString()));
+                }
             }
   
         }
@@ -74,6 +78,30 @@ namespace HornitoCordoobesWeb.Account
         protected void CustomValidator3_ServerValidate(object source, ServerValidateEventArgs args)
         {
             args.IsValid = !new GestorCliente().exist(email.Text);
+        }
+
+        private void FillForm(int userId)
+        {
+            mensaje.Text = "Editar Cliente";
+            Cliente c = new GestorCliente().getById(userId);
+            if (c == null)
+            {
+                Response.Redirect("~/Default.aspx");
+            }
+            else
+            {
+                nombre.Text = c.Nombre;
+                apellido.Text = c.Apellido;
+                sexo.Items.FindByValue(c.Sexo).Selected = true;
+                tipoDocumento.Items.FindByValue(c.IdTipoDocumento.ToString()).Selected = true;
+                nroDocumento.Text = c.NumeroDocumento.ToString();
+                email.Text = c.Email;
+                direccion.Text = c.Direccion;
+                barrio.Items.FindByValue(c.IdBarrio.ToString()).Selected = true;
+                usuario.Text = c.NombreUsuario;
+            }
+            
+
         }
     }
 }

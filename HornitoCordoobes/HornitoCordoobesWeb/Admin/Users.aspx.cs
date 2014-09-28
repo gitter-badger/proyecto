@@ -29,7 +29,8 @@ namespace HornitoCordoobesWeb.Admin
 
         protected void usuarios_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            int id = (int)usuarios.SelectedDataKey.Value;
+            Response.Redirect("~/Account/Register.aspx?userId="+id);
         }
 
         protected void usuarios_PageIndexChanging(object sender, GridViewPageEventArgs e)

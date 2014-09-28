@@ -20,7 +20,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <p>
-        Registrar Cliente</p>
+        <asp:Label ID="mensaje" runat="server" Text="Registrar Cliente"></asp:Label>
+    </p>
     <p>
         <table style="width: 93%;">
             <tr>
