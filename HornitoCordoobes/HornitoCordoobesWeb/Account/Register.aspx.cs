@@ -13,35 +13,12 @@ namespace HornitoCordoobesWeb.Account
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.LoadTipoDocumento();
-            this.LoadBarrios();
-            if (Page.IsPostBack)
+            if (!Page.IsPostBack)
             {
-                Page.Validate();
-
-                
-
-                if (Page.IsValid)
-                {
-                    Cliente cliente = new Cliente();
-                    cliente.Apellido = apellido.Text;
-                    cliente.Direccion = direccion.Text;
-                    cliente.IdBarrio = Convert.ToInt32(barrio.SelectedValue.ToString());
-                    cliente.IdTipoDocumento = Convert.ToInt32(tipoDocumento.SelectedValue.ToString());
-                    cliente.Nombre = nombre.Text;
-                    cliente.NombreUsuario = usuario.Text;
-                    cliente.Rol = "Cliente";
-                    cliente.Password = password.Text.GetHashCode().ToString();
-                    cliente.Email = email.Text;
-                    cliente.NumeroDocumento = Convert.ToInt32(nroDocumento.Text);
-                    cliente.Sexo = sexo.SelectedValue.ToString();
-                    if (new GestorCliente().save(cliente) > 0)
-                    {
-                        Response.Redirect("~/Admin/Users.aspx");
-                    }
-                    
-                }
+                this.LoadTipoDocumento();
+                this.LoadBarrios();
             }
+  
         }
 
         private void LoadTipoDocumento()
@@ -68,6 +45,35 @@ namespace HornitoCordoobesWeb.Account
         protected void CustomValidator2_ServerValidate(object source, ServerValidateEventArgs args)
         {
             args.IsValid = !new GestorUsuario().exist(usuario.Text);
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            if (Page.IsValid)
+            {
+                Cliente cliente = new Cliente();
+                cliente.Apellido = apellido.Text;
+                cliente.Direccion = direccion.Text;
+                cliente.IdBarrio = Convert.ToInt32(barrio.SelectedValue.ToString());
+                cliente.IdTipoDocumento = Convert.ToInt32(tipoDocumento.SelectedValue.ToString());
+                cliente.Nombre = nombre.Text;
+                cliente.NombreUsuario = usuario.Text;
+                cliente.Rol = "Cliente";
+                cliente.Password = password.Text.GetHashCode().ToString();
+                cliente.Email = email.Text;
+                cliente.NumeroDocumento = Convert.ToInt32(nroDocumento.Text);
+                cliente.Sexo = sexo.SelectedValue.ToString();
+                if (new GestorCliente().save(cliente) > 0)
+                {
+                    Response.Redirect("~/Admin/Users.aspx");
+                }
+
+            }
+        }
+
+        protected void CustomValidator3_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            args.IsValid = !new GestorCliente().exist(email.Text);
         }
     }
 }

@@ -29,7 +29,7 @@
                     <asp:TextBox ID="nombre" runat="server" Width="300px"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="nombre" CssClass="errorStar" ErrorMessage="El nombre es requerido">*</asp:RequiredFieldValidator>
                 </td>
-                <td class="auto-style1" rowspan="13">
+                <td class="auto-style1" rowspan="12">
                     <asp:ValidationSummary ID="ValidationSummary2" runat="server" CssClass="errorStar" />
                 </td>
             </tr>
@@ -71,6 +71,7 @@
                     <asp:TextBox ID="email" runat="server" Width="300px"></asp:TextBox>
                     <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="email" ErrorMessage="Email no valido" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" CssClass="errorStar">*</asp:RegularExpressionValidator>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="email" ErrorMessage="El email es requerido" CssClass="errorStar">*</asp:RequiredFieldValidator>
+                    <asp:CustomValidator ID="CustomValidator3" runat="server" ControlToValidate="email" CssClass="errorStar" ErrorMessage="El email ya esta registrado" OnServerValidate="CustomValidator3_ServerValidate">*</asp:CustomValidator>
                 </td>
             </tr>
             <tr>
@@ -85,12 +86,6 @@
                 <td class="auto-style5">
                     <asp:DropDownList ID="barrio" runat="server" Height="16px" Width="300px">
                     </asp:DropDownList>
-                </td>
-            </tr>
-            <tr>
-                <td class="auto-style3">Activo</td>
-                <td class="auto-style5">
-                    <asp:CheckBox ID="estado" runat="server" />
                 </td>
             </tr>
             <tr>
@@ -118,7 +113,7 @@
             <tr>
                 <td class="auto-style3">&nbsp;</td>
                 <td class="auto-style5">
-                    <asp:Button ID="Button1" runat="server" Text="Aceptar" />
+                    <asp:Button ID="Button1" runat="server" Text="Aceptar" OnClick="Button1_Click" />
                 </td>
             </tr>
         </table>

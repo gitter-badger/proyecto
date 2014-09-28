@@ -20,7 +20,6 @@ namespace HornitoCordoobesNegocio
 
         public int save(Cliente cliente)
         {
-            //TODO implementar magia
             int idUsuario = new GestorUsuario().save(cliente);
             connection.Open();
             SqlCommand insert = new SqlCommand();
@@ -46,12 +45,23 @@ namespace HornitoCordoobesNegocio
 
         public bool exist(int nroDoc, int idTipoDoc)
         {
-            //TODO implementar magia
-            if (nroDoc == 123 && idTipoDoc == 1)
-            {
-                return true;
-            }
-            return false;
+            connection.Open();
+            SqlCommand select = new SqlCommand("SELECT COUNT(*) FROM Clientes WHERE idTiposDeDocumento = @tipoDoc AND nroDoc = @nroDoc", connection);
+            select.Parameters.Add(new SqlParameter("@tipoDoc",idTipoDoc));
+            select.Parameters.Add(new SqlParameter("@nroDoc", nroDoc));
+            bool value = (int)select.ExecuteScalar() > 0 ? true : false;
+            connection.Close();
+            return value;
+        }
+
+        public bool exist(string email)
+        {
+            connection.Open();
+            SqlCommand select = new SqlCommand("SELECT COUNT(*) FROM Clientes WHERE email LIKE @email",connection);
+            select.Parameters.Add(new SqlParameter("@email", email));
+            bool value =  (int)select.ExecuteScalar() > 0 ? true : false;
+            connection.Close();
+            return value;
         }
     }
 }

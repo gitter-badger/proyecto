@@ -15,7 +15,6 @@ namespace HornitoCordoobesNegocio
 
         public List<Barrio> getAll()
         {
-            //TODO Traer datos de la DB
             List<Barrio> lista = new List<Barrio>();
             connection.Open();
             SqlCommand select = new SqlCommand("SELECT * FROM Barrios", connection);

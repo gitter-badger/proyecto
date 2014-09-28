@@ -19,11 +19,12 @@ namespace HornitoCordoobesNegocio
 
         public bool exist(string username)
         {
-            if (username == "test")
-            {
-                return true;
-            }
-            return false;
+            connection.Open();
+            SqlCommand select = new SqlCommand("SELECT COUNT(*) FROM Usuarios WHERE nombreUsuario LIKE @usuario", connection);
+            select.Parameters.Add(new SqlParameter("@usuario", username));
+            bool value = (int)select.ExecuteScalar() > 0 ? true : false;
+            connection.Close();
+            return value;
         }
 
         public int save(Usuario usuario)
