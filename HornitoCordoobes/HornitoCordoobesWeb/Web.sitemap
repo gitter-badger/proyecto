@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+    <siteMapNode url="" title="Menu"  description="">
+          <siteMapNode title="Cuenta">
+            <siteMapNode url="~/Account/Register.aspx" title="Registrar"  description="" />
+          </siteMapNode>
+          <siteMapNode title="Administracion">
+            <siteMapNode url="~/Admin/Product.aspx" title="Productos"  description="" />
+          </siteMapNode>
+    </siteMapNode>
+</siteMap>
