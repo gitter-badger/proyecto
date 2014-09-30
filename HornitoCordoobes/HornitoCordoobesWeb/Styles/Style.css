@@ -1,5 +1,8 @@
 ﻿body {
-    
+    margin:0;
+}
+.wrapper {
+
 }
 * {
     font-family: Arial;
@@ -8,4 +11,40 @@
 .errorStar {
     color: red;
     font-weight: bold;
+}
+
+.menuContainer {
+    background-color: #284783;
+    color: white;
+    height: 38px;   
+}
+.menuContainer a {
+    color: white;
+}
+.menu {
+}
+.menu li {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #284783;
+}
+.menu li:hover{
+    background-color: #2847A0;
+}
+
+.content,.footer {
+    padding-left: 8px;
+}
+.header{
+    margin-bottom: 10px;    
+}
+.footer {
+    padding-right: 7px;
+    text-align: right;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 72%;
+}
+.footer p{
+    margin: 0;
 }

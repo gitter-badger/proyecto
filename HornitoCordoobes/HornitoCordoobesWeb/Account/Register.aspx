@@ -28,7 +28,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <p>
-        <asp:Label ID="mensaje" runat="server" Text="Registrar Cliente"></asp:Label>
+        <asp:Label ID="mensaje" runat="server" Text="Registrar Cliente" Font-Bold="True"></asp:Label>
     </p>
     <p>
         <table style="width: 93%;">
@@ -61,7 +61,7 @@
             <tr>
                 <td class="auto-style2">Tipo Documento</td>
                 <td class="auto-style4">
-                    <asp:DropDownList ID="tipoDocumento" runat="server" Width="300px">
+                    <asp:DropDownList ID="tipoDocumento" runat="server" Width="300px" Height="27px">
                     </asp:DropDownList>
                 </td>
             </tr>
@@ -126,7 +126,6 @@
                 </td>
             </tr>
         </table>
-        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
     </p>
     <div>
 </asp:Content>

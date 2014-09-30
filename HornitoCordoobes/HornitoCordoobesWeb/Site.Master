@@ -10,17 +10,25 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
+    <div class="wrapper">
     <form id="form1" runat="server">
-    <div>
-        <asp:Menu ID="Menu1" runat="server" DataSourceID="SiteMapDataSource1">
+    <div class="header">
+        <div class="menuContainer">
+        <asp:Menu  ID="Menu1" runat="server" DataSourceID="SiteMapDataSource1" Height="30px" BackColor="#284783" CssClass="menu" DynamicEnableDefaultPopOutImage="False" ForeColor="White" StaticEnableDefaultPopOutImage="False">
+            <DynamicMenuItemStyle HorizontalPadding="5px" VerticalPadding="5px" />
         </asp:Menu>
+        </div>
         <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
+        </div>
+        <div class="content">
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         
         </asp:ContentPlaceHolder>
     </div>
     </form>
+        <div class="footer">
     <p>
-        Footer</p>
+        Hornito Cordoobes</p></div>
+    </div>
 </body>
 </html>
