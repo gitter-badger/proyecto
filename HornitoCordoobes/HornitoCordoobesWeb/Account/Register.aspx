@@ -110,7 +110,7 @@
                 <td class="auto-style5">
                     <asp:TextBox ID="password" runat="server" TextMode="Password" Width="300px"></asp:TextBox>
                     <asp:CompareValidator ID="CompareValidator2" runat="server" ControlToCompare="repassword" ControlToValidate="password" CssClass="errorStar" ErrorMessage="Los passwords no coinciden">*</asp:CompareValidator>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="password" CssClass="errorStar" ErrorMessage="El password es requerido">*</asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="requirePassword" runat="server" ControlToValidate="password" CssClass="errorStar" ErrorMessage="El password es requerido">*</asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr>

@@ -17,11 +17,17 @@ namespace HornitoCordoobesNegocio
             return null;
         }
 
-        public bool exist(string username)
+        public bool exist(string username, int? userId)
         {
             connection.Open();
-            SqlCommand select = new SqlCommand("SELECT COUNT(*) FROM Usuarios WHERE nombreUsuario LIKE @usuario", connection);
+            string extraFilter = "";
+            if (userId != null)
+            {
+                extraFilter = " AND idUsuario != @idUsuario ";
+            }
+            SqlCommand select = new SqlCommand("SELECT COUNT(*) FROM Usuarios WHERE nombreUsuario LIKE @usuario" + extraFilter, connection);
             select.Parameters.Add(new SqlParameter("@usuario", username));
+            select.Parameters.Add(new SqlParameter("@idUsuario", userId));
             bool value = (int)select.ExecuteScalar() > 0 ? true : false;
             connection.Close();
             return value;
@@ -42,6 +48,32 @@ namespace HornitoCordoobesNegocio
             usuario.Id = idUsuario;
 
             return idUsuario;
+        }
+
+        public bool update(Usuario usuario)
+        {
+            connection.Open();
+            try
+            {
+                SqlCommand update = new SqlCommand("UPDATE Usuarios SET nombreUsuario=@nombreUsuario, password=@password, rol=@rol WHERE idUsuario=@idUsuario");
+                update.Connection = connection;
+                update.Parameters.Add(new SqlParameter("@nombreUsuario", usuario.NombreUsuario));
+                update.Parameters.Add(new SqlParameter("@password", usuario.Password));
+                update.Parameters.Add(new SqlParameter("@rol", usuario.Rol));
+                update.Parameters.Add(new SqlParameter("@idUsuario", usuario.Id));
+                update.ExecuteNonQuery();
+                connection.Close();
+            }
+            catch (SqlException e)
+            {
+                return false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return true;
         }
     }
 }

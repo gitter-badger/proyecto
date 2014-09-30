@@ -19,6 +19,7 @@ namespace HornitoCordoobesWeb.Account
                 this.LoadBarrios();
                 if (Request.QueryString["userId"] != null)
                 {
+                    requirePassword.Enabled = false;
                     this.FillForm(Convert.ToInt32(Request.QueryString["userId"].ToString()));
                 }
             }
@@ -43,41 +44,34 @@ namespace HornitoCordoobesWeb.Account
 
         protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
         {
-            args.IsValid = !new GestorCliente().exist(Convert.ToInt32(nroDocumento.Text),Convert.ToInt32(tipoDocumento.SelectedValue));
+            args.IsValid = !new GestorCliente().exist(Convert.ToInt32(nroDocumento.Text), Convert.ToInt32(tipoDocumento.SelectedValue), Convert.ToInt32(Request.QueryString["userId"]));
         }
 
         protected void CustomValidator2_ServerValidate(object source, ServerValidateEventArgs args)
         {
-            args.IsValid = !new GestorUsuario().exist(usuario.Text);
+            args.IsValid = !new GestorUsuario().exist(usuario.Text,Convert.ToInt32(Request.QueryString["userId"]));
         }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
             if (Page.IsValid)
             {
-                Cliente cliente = new Cliente();
-                cliente.Apellido = apellido.Text;
-                cliente.Direccion = direccion.Text;
-                cliente.IdBarrio = Convert.ToInt32(barrio.SelectedValue.ToString());
-                cliente.IdTipoDocumento = Convert.ToInt32(tipoDocumento.SelectedValue.ToString());
-                cliente.Nombre = nombre.Text;
-                cliente.NombreUsuario = usuario.Text;
-                cliente.Rol = "Cliente";
-                cliente.Password = password.Text.GetHashCode().ToString();
-                cliente.Email = email.Text;
-                cliente.NumeroDocumento = Convert.ToInt32(nroDocumento.Text);
-                cliente.Sexo = sexo.SelectedValue.ToString();
-                if (new GestorCliente().save(cliente) > 0)
+                if (Request.QueryString["userId"] != null)
                 {
-                    Response.Redirect("~/Admin/Users.aspx");
+                    this.updateCliente();
                 }
-
+                else
+                {
+                    this.saveCliente();
+                }
             }
         }
 
+        
+
         protected void CustomValidator3_ServerValidate(object source, ServerValidateEventArgs args)
         {
-            args.IsValid = !new GestorCliente().exist(email.Text);
+            args.IsValid = !new GestorCliente().exist(email.Text, Convert.ToInt32(Request.QueryString["userId"]));
         }
 
         private void FillForm(int userId)
@@ -100,8 +94,47 @@ namespace HornitoCordoobesWeb.Account
                 barrio.Items.FindByValue(c.IdBarrio.ToString()).Selected = true;
                 usuario.Text = c.NombreUsuario;
             }
-            
+        }
 
+        private void saveCliente()
+        {
+            Cliente cliente = this.materialize();
+            if (new GestorCliente().save(cliente) > 0)
+            {
+                Response.Redirect("~/Admin/Users.aspx");
+            }
+        }
+
+        private void updateCliente()
+        {
+            Cliente cliente = this.materialize();
+            if (new GestorCliente().update(cliente))
+            {
+                Response.Redirect("~/Admin/Users.aspx");
+            }
+        }
+
+        private Cliente materialize()
+        {
+            Cliente cliente = new Cliente();
+            cliente.Apellido = apellido.Text;
+            cliente.Direccion = direccion.Text;
+            cliente.IdBarrio = Convert.ToInt32(barrio.SelectedValue.ToString());
+            cliente.IdTipoDocumento = Convert.ToInt32(tipoDocumento.SelectedValue.ToString());
+            cliente.Nombre = nombre.Text;
+            cliente.NombreUsuario = usuario.Text;
+            cliente.Rol = "Cliente";
+            cliente.Password = password.Text.GetHashCode().ToString();
+            cliente.Email = email.Text;
+            cliente.NumeroDocumento = Convert.ToInt32(nroDocumento.Text);
+            cliente.Sexo = sexo.SelectedValue.ToString();
+
+            if (Request.QueryString["userId"] != null)
+            {
+                cliente.Id = Convert.ToInt32(Request.QueryString["userId"]);
+            }
+
+            return cliente;
         }
     }
 }

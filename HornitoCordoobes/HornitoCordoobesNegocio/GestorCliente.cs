@@ -52,22 +52,34 @@ namespace HornitoCordoobesNegocio
             return idUsuario;
         }
 
-        public bool exist(int nroDoc, int idTipoDoc)
+        public bool exist(int nroDoc, int idTipoDoc, int? userId)
         {
             connection.Open();
-            SqlCommand select = new SqlCommand("SELECT COUNT(*) FROM Clientes WHERE idTiposDeDocumento = @tipoDoc AND nroDoc = @nroDoc", connection);
+            string extraFilter = "";
+            if (userId != null)
+            {
+                extraFilter = " AND idUsuario != @idUsuario ";
+            }
+            SqlCommand select = new SqlCommand("SELECT COUNT(*) FROM Clientes WHERE idTiposDeDocumento = @tipoDoc AND nroDoc = @nroDoc" + extraFilter, connection);
             select.Parameters.Add(new SqlParameter("@tipoDoc",idTipoDoc));
             select.Parameters.Add(new SqlParameter("@nroDoc", nroDoc));
+            select.Parameters.Add(new SqlParameter("@idUsuario", userId));
             bool value = (int)select.ExecuteScalar() > 0 ? true : false;
             connection.Close();
             return value;
         }
 
-        public bool exist(string email)
+        public bool exist(string email, int? userId)
         {
             connection.Open();
-            SqlCommand select = new SqlCommand("SELECT COUNT(*) FROM Clientes WHERE email LIKE @email",connection);
+            string extraFilter = "";
+            if (userId != null)
+            {
+                extraFilter = " AND idUsuario != @idUsuario ";
+            }
+            SqlCommand select = new SqlCommand("SELECT COUNT(*) FROM Clientes WHERE email LIKE @email" + extraFilter,connection);
             select.Parameters.Add(new SqlParameter("@email", email));
+            select.Parameters.Add(new SqlParameter("@idUsuario", userId));
             bool value =  (int)select.ExecuteScalar() > 0 ? true : false;
             connection.Close();
             return value;
@@ -78,6 +90,7 @@ namespace HornitoCordoobesNegocio
             connection.Open();
             SqlCommand select = new SqlCommand("SELECT * FROM Clientes c LEFT JOIN Usuarios u On c.idUsuario = u.idUsuario WHERE rol LIKE 'Cliente' AND c.idUsuario=@id", connection);
             select.Parameters.Add(new SqlParameter("@id",id));
+            select.Parameters.Add(new SqlParameter("@asdf", id));
             SqlDataReader reader = select.ExecuteReader();
             reader.Read();
             Cliente c = this.materialize(reader);
@@ -107,6 +120,34 @@ namespace HornitoCordoobesNegocio
             c.Estado = (bool)row["estado"];
             c.FechaAlta = (DateTime)row["fechaAlta"];
             return c;
+        }
+
+        public bool update(Cliente cliente)
+        {
+            if (!new GestorUsuario().update(cliente))
+            {
+                throw new Exception();
+            }
+
+            connection.Open();
+            SqlCommand update = new SqlCommand();
+            update.Connection = connection;
+            update.CommandText = "UPDATE Clientes SET nroDoc=@nroDoc, idTiposDeDocumento=@idTiposDeDocumento, email=@email"
+                                + ", nombre=@nombre, apellido=@apellido, direccion=@direccion, idBarrio=@idBarrio, estado=@estado, sexo=@sexo WHERE idUsuario=@idUsuario ";
+            update.Parameters.Add(new SqlParameter("@idUsuario", cliente.Id));
+            update.Parameters.Add(new SqlParameter("@nroDoc", cliente.NumeroDocumento));
+            update.Parameters.Add(new SqlParameter("@idTiposDeDocumento", cliente.IdTipoDocumento));
+            update.Parameters.Add(new SqlParameter("@email", cliente.Email));
+            update.Parameters.Add(new SqlParameter("@nombre", cliente.Nombre));
+            update.Parameters.Add(new SqlParameter("@apellido", cliente.Apellido));
+            update.Parameters.Add(new SqlParameter("@direccion", cliente.Direccion));
+            update.Parameters.Add(new SqlParameter("@idBarrio", cliente.IdBarrio));
+            update.Parameters.Add(new SqlParameter("@estado", 1));
+            update.Parameters.Add(new SqlParameter("@sexo", cliente.Sexo));
+
+            update.ExecuteNonQuery();
+            connection.Close();
+            return true;
         }
     }
 }
