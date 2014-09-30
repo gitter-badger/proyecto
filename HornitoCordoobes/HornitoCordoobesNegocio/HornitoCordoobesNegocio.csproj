@@ -41,6 +41,8 @@
   <ItemGroup>
     <Compile Include="GestorBarrio.cs" />
     <Compile Include="GestorCliente.cs" />
+    <Compile Include="GestorProducto.cs" />
+    <Compile Include="GestorTipoDeProducto.cs" />
     <Compile Include="GestorTipoDocumento.cs" />
     <Compile Include="GestorUsuario.cs" />
     <Compile Include="IGestor.cs" />

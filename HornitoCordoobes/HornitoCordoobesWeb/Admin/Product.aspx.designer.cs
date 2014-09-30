@@ -22,13 +22,13 @@ namespace HornitoCordoobesWeb.Admin {
         protected global::System.Web.UI.WebControls.TextBox nombreDelProducto;
         
         /// <summary>
-        /// GridView1 control.
+        /// GridViewProductos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.GridView GridViewProductos;
         
         /// <summary>
         /// descripcion control.
@@ -67,12 +67,12 @@ namespace HornitoCordoobesWeb.Admin {
         protected global::System.Web.UI.WebControls.CheckBox estado;
         
         /// <summary>
-        /// aceptar control.
+        /// guadar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button aceptar;
+        protected global::System.Web.UI.WebControls.Button guadar;
     }
 }

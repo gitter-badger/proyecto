@@ -14,12 +14,24 @@
         .auto-style4 {
             width: 203px;
         }
+        .auto-style5 {
+            width: 203px;
+            height: 30px;
+        }
+        .auto-style6 {
+            width: 205px;
+            height: 30px;
+        }
+        .auto-style7 {
+            width: 26px;
+            height: 30px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <table style="width: 100%;">
         <tr>
-            <td class="auto-style1" colspan="2">Datos del producto</td>
+            <td class="auto-style1" colspan="2">Datos del producto:</td>
             <td class="auto-style3">&nbsp;</td>
             <td>Listado de Productos</td>
         </tr>
@@ -30,7 +42,7 @@
             </td>
             <td class="auto-style3">&nbsp;</td>
             <td rowspan="6">
-                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None">
+                <asp:GridView ID="GridViewProductos" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" Height="190px" Width="621px">
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <Columns>
                         <asp:CommandField SelectText="Editar" ShowSelectButton="True" />
@@ -60,12 +72,12 @@
             <td class="auto-style3">&nbsp;</td>
         </tr>
         <tr>
-            <td class="auto-style4">Tipo de Producto:</td>
-            <td class="auto-style2">
-                <asp:DropDownList ID="tipoDeProducto" runat="server" Height="16px" Width="208px">
+            <td class="auto-style5">Tipo de Producto:</td>
+            <td class="auto-style6">
+                <asp:DropDownList ID="tipoDeProducto" runat="server" Height="26px" Width="208px">
                 </asp:DropDownList>
             </td>
-            <td class="auto-style3">&nbsp;</td>
+            <td class="auto-style7"></td>
         </tr>
         <tr>
             <td class="auto-style4">Precio unitatio:</td>
@@ -90,7 +102,7 @@
         <tr>
             <td class="auto-style4">&nbsp;</td>
             <td class="auto-style2">
-                <asp:Button ID="aceptar" runat="server" Text="Guardar" />
+                <asp:Button ID="guadar" runat="server" Text="Guardar" OnClick="guardar_Click" />
             </td>
             <td class="auto-style3">&nbsp;</td>
             <td>&nbsp;</td>
