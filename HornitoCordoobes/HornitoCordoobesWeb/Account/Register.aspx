@@ -16,6 +16,14 @@
         .auto-style5 {
             width: 345px;
         }
+        .auto-style6 {
+            width: 136px;
+            height: 30px;
+        }
+        .auto-style7 {
+            width: 345px;
+            height: 30px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -83,9 +91,9 @@
                 </td>
             </tr>
             <tr>
-                <td class="auto-style3">Barrio</td>
-                <td class="auto-style5">
-                    <asp:DropDownList ID="barrio" runat="server" Height="16px" Width="300px">
+                <td class="auto-style6">Barrio</td>
+                <td class="auto-style7">
+                    <asp:DropDownList ID="barrio" runat="server" Height="27px" Width="300px">
                     </asp:DropDownList>
                 </td>
             </tr>
