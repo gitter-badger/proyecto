@@ -17,7 +17,7 @@ namespace HornitoCordoobesNegocio.Utils
         {
             if (connection == null)
             {
-                connection = new SqlConnection(ConnetionString.connetionString);
+                connection = new SqlConnection(ConnectionString.connetionString);
             }
             return connection;
         }
