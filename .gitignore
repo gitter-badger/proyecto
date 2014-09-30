@@ -174,4 +174,4 @@ UpgradeLog*.htm
 FakesAssemblies/
 
 # Connection String
-*/ConnectionString.cs
+/HornitoCordoobes/HornitoCordoobesNegocio/Utils/ConnectionString.cs
