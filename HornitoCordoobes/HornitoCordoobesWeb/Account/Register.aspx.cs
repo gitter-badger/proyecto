@@ -21,6 +21,8 @@ namespace HornitoCordoobesWeb.Account
                 {
                     requirePassword.Enabled = false;
                     this.FillForm(Convert.ToInt32(Request.QueryString["userId"].ToString()));
+                    this.eliminar.Enabled = true;
+                    this.eliminar.Visible = true;
                 }
             }
   
@@ -135,6 +137,12 @@ namespace HornitoCordoobesWeb.Account
             }
 
             return cliente;
+        }
+
+        protected void eliminar_Click(object sender, EventArgs e)
+        {
+            new GestorCliente().delete(this.materialize());
+            Response.Redirect("~/Admin/Users.aspx");
         }
     }
 }

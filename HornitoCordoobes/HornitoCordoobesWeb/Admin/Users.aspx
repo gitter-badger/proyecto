@@ -3,8 +3,14 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <p>
-        Listado de usuarios
-        <asp:GridView AutoGenerateColumns="False" onpageindexchanging="usuarios_PageIndexChanging" ID="usuarios" runat="server" AllowPaging="True" OnSelectedIndexChanged="usuarios_SelectedIndexChanged" CellPadding="4" ForeColor="#333333" GridLines="None">
+        Listado de Clientes
+    </p>
+    <hr />
+    <p>
+        Email&nbsp;
+        <asp:TextBox ID="email" runat="server" Width="127px"></asp:TextBox>
+&nbsp;<asp:Button ID="filtrar" runat="server" Text="Filtrar" />
+        <asp:GridView OnRowDataBound="usuarios_RowDataBound" AutoGenerateColumns="False" onpageindexchanging="usuarios_PageIndexChanging" ID="usuarios" runat="server" AllowPaging="True" OnSelectedIndexChanged="usuarios_SelectedIndexChanged" CellPadding="4" ForeColor="#333333" GridLines="None">
             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
             <Columns>
                 <asp:CommandField SelectText="Editar" ShowSelectButton="True" />

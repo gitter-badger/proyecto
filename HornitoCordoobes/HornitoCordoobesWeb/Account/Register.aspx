@@ -123,6 +123,8 @@
                 <td class="auto-style3">&nbsp;</td>
                 <td class="auto-style5">
                     <asp:Button ID="Button1" runat="server" Text="Aceptar" OnClick="Button1_Click" />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:LinkButton ID="eliminar" runat="server" Enabled="False" OnClick="eliminar_Click" Visible="False">Eliminar</asp:LinkButton>
                 </td>
             </tr>
         </table>

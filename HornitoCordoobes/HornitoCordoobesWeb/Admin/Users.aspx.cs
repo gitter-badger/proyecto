@@ -13,16 +13,16 @@ namespace HornitoCordoobesWeb.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
-            {
+            //if (!Page.IsPostBack)
+            //{
                 this.LoadUsuarios();
-            }
+            //}
             
         }
 
         private void LoadUsuarios()
         {
-            usuarios.DataSource = new GestorCliente().getAll();
+            usuarios.DataSource = new GestorCliente().getByEmail(this.email.Text);
             usuarios.DataKeyNames = new string[] { "Id" };
             usuarios.DataBind();
         }
@@ -37,6 +37,21 @@ namespace HornitoCordoobesWeb.Admin
         {
             usuarios.PageIndex = e.NewPageIndex;
             this.LoadUsuarios();
+        }
+
+        protected void usuarios_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.DataItem != null)
+            {
+                Cliente item = (Cliente)e.Row.DataItem;
+                if (!item.Estado)
+                {
+                    e.Row.CssClass = "disableClient";
+                    e.Row.Cells[0].Text = "";
+                }
+                    
+            }
+            
         }
     }
 }

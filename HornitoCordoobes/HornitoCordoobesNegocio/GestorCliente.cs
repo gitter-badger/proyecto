@@ -149,5 +149,35 @@ namespace HornitoCordoobesNegocio
             connection.Close();
             return true;
         }
+
+        public void delete(Cliente cliente)
+        {
+            connection.Open();
+            SqlCommand update = new SqlCommand();
+            update.Connection = connection;
+            update.CommandText = "UPDATE Clientes SET estado=0 WHERE idUsuario=@idUsuario ";
+            update.Parameters.Add(new SqlParameter("@idUsuario", cliente.Id));
+            update.ExecuteNonQuery();
+            connection.Close();
+        }
+
+        public List<Cliente> getByEmail(string email)
+        {
+            if (email == "")
+            {
+                return this.getAll();
+            }
+            List<Cliente> lista = new List<Cliente>();
+            connection.Open();
+            SqlCommand select = new SqlCommand("SELECT * FROM Clientes c LEFT JOIN Usuarios u On c.idUsuario = u.idUsuario WHERE rol LIKE 'Cliente' AND email LIKE @email", connection);
+            select.Parameters.Add(new SqlParameter("email","%"+email+"%"));
+            SqlDataReader reader = select.ExecuteReader();
+            while (reader.Read())
+            {
+                lista.Add(this.materialize(reader));
+            }
+            connection.Close();
+            return lista;
+        }
     }
 }
